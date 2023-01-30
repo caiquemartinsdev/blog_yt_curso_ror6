@@ -1,14 +1,17 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @article.body %>
-</p>
+<h2 class="blog-post-title"><%= @article.title %></h2>
+        <p class="blog-post-meta"><%= month_day_comma_year(@article.created_at)%> by <a href="#">Chris</a>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+
+        <p><%= @article.body %></p>
+          <tr>
+            <td><%= link_to 'Edit', edit_article_path(@article), 
+            class: "btn btn-secondary" %></td>
+
+            <td><%= link_to 'Destroy', @article, 
+            method: :delete, data: { confirm: 'Are you sure?' } , 
+            class: "btn btn-danger"%></td>
+
+            <td><%= link_to 'Back', articles_path,class: "btn btn-secondary" %> </td>
+          </tr>
