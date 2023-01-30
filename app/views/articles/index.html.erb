@@ -40,11 +40,14 @@
       <h3 class="pb-4 mb-4 fst-italic border-bottom">
         From the Firehose
       </h3>
+
+        <%= link_to 'New Article', new_article_path %>
+
+        <%= render @articles %>
+
+        <%= render 'pagination'%>
     </div>
+    
+        <%= render 'archives'%>
+    
   </div>
-
-<%= link_to 'New Article', new_article_path %>
-
-  <% @articles.each do |article| %>
-    <%= render article %>
-  <% end %>
