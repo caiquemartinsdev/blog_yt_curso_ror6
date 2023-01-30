@@ -5,7 +5,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    current_page = (params[:page] || 1).to_i
+    @articles = Article.page(current_page).per(2)
   end
 
   # GET /articles/1 or /articles/1.json
