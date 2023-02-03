@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1 or /categories/1.json
-  def show
+  def show 
   end
 
   # GET /categories/new
@@ -50,9 +50,9 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1 or /categories/1.json
   def destroy
     if @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
+        format.json { head :no_content }
     end
     else
       redirect_to categories_url, alert: @category.errors.messages[:base][0]
