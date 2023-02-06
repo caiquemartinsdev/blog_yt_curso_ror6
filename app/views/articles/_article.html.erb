@@ -8,9 +8,10 @@
         <p> <%= link_to 'Continue reading ...', article, class: 'btn btn-link'%> </p>
           <tr>
             <td><%= link_to 'Edit', edit_article_path(article), 
-            class: "btn btn-secondary" %></td>
+            class: "btn btn-secondary" if policy(article).update?%></td>
+
             <td><%= link_to 'Destroy', article, 
             method: :delete, data: { confirm: 'Are you sure?' } , 
-            class: "btn btn-danger"%></td>
+            class: "btn btn-danger" if policy(article).destroy? %></td>
           </tr>
       </article>

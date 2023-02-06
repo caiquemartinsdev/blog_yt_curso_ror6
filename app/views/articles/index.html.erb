@@ -48,7 +48,7 @@ COMENTADO POIS POSSO PRECISAR FUTURAMENTE
 
       <p>
         <%= link_to 'New Article', new_article_path, 
-        class: 'btn btn-primary' %>
+        class: 'btn btn-primary' if  user_signed_in? %>
       </p>
       
         <%= render @articles %>
