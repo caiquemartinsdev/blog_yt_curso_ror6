@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include Paginable
+
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_article, only: %i[ show edit update destroy ]
 
@@ -6,12 +8,11 @@ class ArticlesController < ApplicationController
   def index
     @highlights = Article.order(created_at: :desc).first(3)
 
-    current_page = (params[:page] || 1).to_i
     highlight_ids = @highlights.pluck(:id).join(',')
 
     @articles = Article.order(created_at: :desc)
                         .where("id NOT IN(#{highlight_ids})")
-                        .page(current_page).per(3)
+                        .page(current_page).per(2)
   end
 
   # GET /articles/1 or /articles/1.json
