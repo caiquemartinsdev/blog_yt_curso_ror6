@@ -6,13 +6,17 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @highlights = Article.order(created_at: :desc).first(3)
+    @highlights = Article.filter_by_category(params[:category_id]).order(created_at: :desc)
+                  .first(3)
 
     highlight_ids = @highlights.pluck(:id).join(',')
 
     @articles = Article.order(created_at: :desc)
+                        .filter_by_category(params[:category_id])
                         .where("id NOT IN(#{highlight_ids})")
                         .page(current_page).per(2)
+
+    @categories = Category.sorted
   end
 
   # GET /articles/1 or /articles/1.json
